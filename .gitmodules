@@ -1,0 +1,3 @@
+[submodule "src/pxl"]
+	path = src/pxl
+	url = https://domrein@github.com/domrein/Pxl.git

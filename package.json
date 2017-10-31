@@ -1,0 +1,13 @@
+{
+  "name": "petsvsphantoms",
+  "version": "0.1.0",
+  "description": "",
+  "scripts": {
+    "sprite": "node spritesheet.js"
+  },
+  "author": "",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "spritesmith": "^3.1.1"
+  }
+}

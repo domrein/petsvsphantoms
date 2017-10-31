@@ -1,0 +1,27 @@
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, user-scalable=no" />
+    <title>Pets vs Phantoms</title>
+  </head>
+  <body style="margin: 0; background-color: #000;">
+    <canvas id="canvas"></canvas>
+    <script type="module">
+      import Game from "./src/Game.js";
+
+      new Game().init();
+
+      // TODO: handle fullscreen
+      function onFullscreen(event) {
+        // if (event.keyCode === 70) {
+        //   const elem = document.getElementById("canvas");
+        //   if (document.webkitFullscreenElement) {
+        //     document.webkitExitFullscreen();
+        //   }
+        //   else {
+        //     elem.webkitRequestFullscreen();
+        //   }
+        // }
+      }
+    </script>
+  </body>
+</html>
