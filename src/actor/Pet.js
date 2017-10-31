@@ -35,11 +35,11 @@ export default class Pet extends Actor {
 
     switch (type) {
       case "kitty":
-        this.health = 3;
+        this.health = 2;
         this.cooldown = 600;
         break;
       case "puppy":
-        this.health = 4;
+        this.health = 10;
         break;
       case "snake":
         this.health = 1;
