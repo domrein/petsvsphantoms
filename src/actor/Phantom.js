@@ -56,11 +56,15 @@ export default class Phantom extends Actor {
         this.alive = false;
         this.die();
       }
+      else {
+        this.scene.game.audioMixer.play("phantomHit");
+      }
     }
   }
 
   die() {
     this.scene.burst("#594e82", 10, this.body.x + 24, this.body.y + 24);
     this.scene.camera.shake(1, 5);
+    this.scene.game.audioMixer.play("phantomDie");
   }
 }

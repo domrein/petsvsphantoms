@@ -26,12 +26,13 @@ export default class _Game extends Game {
     // preload assets
     this.preloader.addImage("../assets/sprites.png");
 
-    // this.preloader.addAudio("../assets/audio/EnemyDie.wav", "enemyDie");
-    // this.preloader.addAudio("../assets/audio/EnemyHit.wav", "enemyHit");
-    // this.preloader.addAudio("../assets/audio/Laser.wav", "laser");
-    // this.preloader.addAudio("../assets/audio/Poop.wav", "poop");
-    // this.preloader.addAudio("../assets/audio/RobotBatteryGet.wav", "robotBatteryGet");
-    // this.preloader.addAudio("../assets/audio/TerminalBatteryGet.wav", "terminalBatteryGet");
+    this.preloader.addAudio("../assets/audio/Crater.wav", "crater");
+    this.preloader.addAudio("../assets/audio/PetDie.wav", "petDie");
+    this.preloader.addAudio("../assets/audio/PhantomDie.wav", "phantomDie");
+    this.preloader.addAudio("../assets/audio/SnakeSpit.wav", "snakeSpit");
+    this.preloader.addAudio("../assets/audio/HeartPickup.wav", "heartPickup");
+    this.preloader.addAudio("../assets/audio/PhantomHit.wav", "phantomHit");
+    this.preloader.addAudio("../assets/audio/PetPlace.wav", "petPlace");
 
     // this.preloader.addAudio("../assets/audio/BGMusic.mp3", "bgMusic");
 

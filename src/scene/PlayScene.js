@@ -13,6 +13,7 @@ import Point from "../pxl/core/Point.js";
 
 import Pet from "../actor/Pet.js";
 import Phantom from "../actor/Phantom.js";
+import Heart from "../actor/Heart.js";
 import Particle from "../actor/Particle.js";
 import TitleScene from "./TitleScene.js";
 
@@ -242,6 +243,7 @@ export default class PlayScene extends Scene {
       closestSpawn = 10;
     }
 
+    // spawn phantoms
     if ((Math.random() > spawnChance) && !this.gameOver && closestSpawn <= this.lastSpawn) {
       this.lastSpawn = 0;
       let row = -1;
@@ -273,6 +275,17 @@ export default class PlayScene extends Scene {
         }
       }
     });
+
+    // spawn heart (random gift :) )
+    if (this.count % 700 === 0) {
+      const heart = new Heart(this);
+      heart.body.x = Math.random() * 300 + 50;
+      heart.body.y = 0;
+      heart.body.velocity.m = 1;
+      heart.body.velocity.d = Math.PI * .5;
+      heart.activateFriction = ~~(60 + Math.random() * 100);
+      this.addActor(heart);
+    }
   }
 
   killRow(row) {
@@ -311,6 +324,8 @@ export default class PlayScene extends Scene {
         // shake dat screen
         this.camera.shake(3, 5);
         this.camera.shake(3, 5);
+
+        this.game.audioMixer.play("crater");
       }, i * 200);
     }
   }
@@ -330,6 +345,7 @@ export default class PlayScene extends Scene {
       hearts[0].alive = false;
       this.hearts += 1;
       this.burst("#ff6bb9", 3, hearts[0].body.x + 16, hearts[0].body.y + 16);
+      this.game.audioMixer.play("heartPickup");
       return;
     }
     // see what we're touching
@@ -383,9 +399,12 @@ export default class PlayScene extends Scene {
     const cell = this.findGridCell(touch);
     if (cell) {
       const valid = this.isCellValid(this.dragTarget.type, cell);
+      // place new pet
       if (valid && this.dragTarget.type === "create") {
         this.createPet(this.dragTarget.pet, cell);
+        this.game.audioMixer.play("petPlace");
       }
+      // move pet
       else if (valid && this.dragTarget.type === "move") {
         this.dragTarget.pet.pet.body.x = cell.x * this.gridCellSize + this.gridPadLeft;
         this.dragTarget.pet.pet.body.y = cell.y * this.gridCellSize + this.gridPadTop;
@@ -395,7 +414,9 @@ export default class PlayScene extends Scene {
         this.dragTarget.pet.pet.graphics[0].offset.x = 0;
         this.dragTarget.pet.pet.graphics[0].offset.y = 0;
         this.dragTarget.pet.pet.body.disabled = false;
+        this.game.audioMixer.play("petPlace");
       }
+      // return pet
       else if (this.dragTarget.type === "move") {
         this.dragTarget.pet.pet.body.x = this.dragTarget.pet.x * this.gridCellSize + this.gridPadLeft;
         this.dragTarget.pet.pet.body.y = this.dragTarget.pet.y * this.gridCellSize + this.gridPadTop;

@@ -65,6 +65,7 @@ export default class Pet extends Actor {
       if (this.projectile === "snakespit") {
         projectile.body.x += 30;
         projectile.body.y += 15;
+        this.scene.game.audioMixer.play("snakeSpit");
       }
       this.scene.addActor(projectile);
     }
@@ -95,11 +96,26 @@ export default class Pet extends Actor {
   die() {
     let color = "#000";
     switch (this.type) {
-      case "kitty": color = "#8d53af"; break;
+      // TODO: charging phantom/super laser, blink alert, then everything in row is destroyed
+      case "kitty": {
+        color = "#8d53af";
+        // kitty pops out hearts when it dies
+        for (let i = 0; i < 4; i++) {
+          const heart = new Heart(this.scene);
+          heart.body.x = this.body.x;
+          heart.body.y = this.body.y;
+          heart.body.velocity.m = 5;
+          heart.body.velocity.d = Math.random() * Math.PI * 2;
+          this.scene.addActor(heart);
+        }
+        break;
+      }
       case "puppy": color = "#7cd77c"; break;
+      // TODO: one of the snakes leaves acid when it dies (can't place anything there anymore, but does damage to anything that passes through it)
       case "snake": color = "#6ac851"; break;
     }
     this.scene.burst(color, 20, this.body.x + 24, this.body.y + 24);
     this.scene.camera.shake(2, 15);
+    this.scene.game.audioMixer.play("petDie");
   }
 }

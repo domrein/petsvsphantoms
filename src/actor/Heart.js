@@ -15,7 +15,6 @@ export default class Heart extends Actor {
     this.body = new Body();
     this.body.width = 32;
     this.body.height = 32;
-    this.body.friction = new Point(.9, .9);
     this.body.type = "heart";
 
     this.graphics.push(new Sprite(this));
@@ -26,10 +25,15 @@ export default class Heart extends Actor {
     this.graphics[0].z = 3;
 
     this.count = 0;
+    this.activateFriction = 0;
   }
 
   update() {
     super.update();
+
+    if (this.count === this.activateFriction) {
+      this.body.friction = new Point(.9, .9);
+    }
 
     this.count++;
     this.graphics[0].scale.x = .9 + Math.sin(this.count / 20) * .1;
