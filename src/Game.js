@@ -24,19 +24,19 @@ export default class _Game extends Game {
     ];
 
     // preload assets
-    this.preloader.addImage("../assets/sprites.png");
+    this.preloader.addImage(`${window.location.href}assets/sprites.png`, "sprites");
 
-    this.preloader.addAudio("../assets/audio/Crater.wav", "crater");
-    this.preloader.addAudio("../assets/audio/PetDie.wav", "petDie");
-    this.preloader.addAudio("../assets/audio/PhantomDie.wav", "phantomDie");
-    this.preloader.addAudio("../assets/audio/SnakeSpit.wav", "snakeSpit");
-    this.preloader.addAudio("../assets/audio/HeartPickup.wav", "heartPickup");
-    this.preloader.addAudio("../assets/audio/PhantomHit.wav", "phantomHit");
-    this.preloader.addAudio("../assets/audio/PetPlace.wav", "petPlace");
+    this.preloader.addAudio(`${window.location.href}assets/audio/Crater.wav`, "crater");
+    this.preloader.addAudio(`${window.location.href}assets/audio/PetDie.wav`, "petDie");
+    this.preloader.addAudio(`${window.location.href}assets/audio/PhantomDie.wav`, "phantomDie");
+    this.preloader.addAudio(`${window.location.href}assets/audio/SnakeSpit.wav`, "snakeSpit");
+    this.preloader.addAudio(`${window.location.href}assets/audio/HeartPickup.wav`, "heartPickup");
+    this.preloader.addAudio(`${window.location.href}assets/audio/PhantomHit.wav`, "phantomHit");
+    this.preloader.addAudio(`${window.location.href}assets/audio/PetPlace.wav`, "petPlace");
 
     // this.preloader.addAudio("../assets/audio/BGMusic.mp3", "bgMusic");
 
-    this.spriteStore.frameData = {"../assets/sprites.png": sprites};
+    this.spriteStore.frameData = {sprites};
     this.spriteStore.animData = {
       heart: {frames: ["heart1"], frameRate: 10, looping: true},
       kitty: {frames: ["kitty1", "kitty2", "kitty3", "kitty4"], frameRate: 10, looping: true},
